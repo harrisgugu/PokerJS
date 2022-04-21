@@ -12,9 +12,12 @@ let player = {
     chips:135
 }
 
+let playerEL = document.querySelector("#player-el")
+playerEL.textContent = (player.name+" "+player.chips)
 function renderGame(){
+    cardsEL.innerText = "Cards: "
     for(let i = 0;i<cards.length;i++){
-        cardsEL.innerText+=cards[i]+" "
+        cardsEL.textContent+=cards[i]+ ", "
     }
     if(sum===21){
         message = "congrats! You have won Blackjack!"
@@ -35,12 +38,13 @@ function startGame(){
     let secondcard = getRandomCard()
     cards = [firstcard,secondcard]
     sum = firstcard + secondcard
+    isAlive = true
     renderGame()
 }
 
 function newCard(){
-    if(isAlive&&hasBlackJack===false){
-        let newCard = getRandomCard;
+    if(isAlive===true&&hasBlackJack===false){
+        let newCard = getRandomCard();
         sum+=newCard;
         cards.push(newCard)
         renderGame();
@@ -65,6 +69,5 @@ function getRandomCard(){
     return card
     
 }
-
 
 
